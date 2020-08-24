@@ -72,6 +72,7 @@ dependencies {
     api ui.material
     api ui.picasso
     api ui.picassoOkHttp
+    api ui.lottie
 
     //rx
     api rx.java
