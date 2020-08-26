@@ -11,6 +11,7 @@ buildscript {
         kotlinVersion = '1.3.50'
         /*https://github.com/Kotlin/kotlinx.coroutines/releases*/
         coroutinesVersion = '1.3.2'
+        appCompatVersion = '1.1.0'
         kotlinDep = [
                 gradlePlugin: "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}",
                 stdlib      : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVersion}",
@@ -21,7 +22,10 @@ buildscript {
                 /*https://developer.android.com/studio/releases/gradle-plugin*/
                 gradlePlugin: "com.android.tools.build:gradle:3.5.0",
                 /*https://dl.google.com/dl/android/maven2/index.html*/
-                appCompat   : "androidx.appcompat:appcompat:1.1.0",
+                appCompat   : "androidx.appcompat:appcompat:${appCompatVersion}",
+                androidXCore: "androidx.core:core:${appCompatVersion}",
+                activityKtx : "androidx.activity:activity-ktx:${appCompatVersion}",
+                fragmentKtx : "androidx.fragment:fragment-ktx:${appCompatVersion}"
         ]
 
         /*https://github.com/google/dagger#dagger*/
