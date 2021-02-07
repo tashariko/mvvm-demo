@@ -8,20 +8,23 @@ import androidx.room.RoomDatabase
 import com.gopay.persistance.AppDatabase
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Singleton
 
-
+@InstallIn(ApplicationComponent::class)
 @Module
 class StorageModule {
     @Provides
     @Singleton
-    fun providesSharedPreferences(context: Context): SharedPreferences {
+    fun providesSharedPreferences(@ApplicationContext context: Context): SharedPreferences {
         return PreferenceManager.getDefaultSharedPreferences(context)
     }
 
     @Provides
     @Singleton
-    fun providesRoomDB(context: Context): RoomDatabase {
+    fun providesRoomDB(@ApplicationContext context: Context): RoomDatabase {
         return Room.databaseBuilder(context, AppDatabase::class.java, "app_db").build()
     }
 }

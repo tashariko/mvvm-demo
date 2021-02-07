@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     compileSdkVersion rootProject.compileSdk
@@ -52,6 +53,12 @@ dependencies {
     //DI
     api daggerDep.core
     kapt daggerDep.compiler
+
+    implementation hiltDep.core
+    //implementation hiltJetpackDep.viewModel
+    kapt hiltDep.compiler
+    //kapt hiltJetpackDep.compilerX
+
 
     //Arch components
     api archComponents.components

@@ -1,15 +1,7 @@
 package com.gopay
 
 import android.app.Application
-import com.gopay.dependencies.AppModule
-import com.gopay.dependencies.CoreComponent
-import com.gopay.dependencies.DaggerCoreComponent
+import dagger.hilt.android.HiltAndroidApp
 
-class App : Application() {
-
-    val coreComponent: CoreComponent by lazy {
-        DaggerCoreComponent.builder()
-            .appModule(AppModule(this))
-            .build()
-    }
-}
+@HiltAndroidApp
+class App : Application()
