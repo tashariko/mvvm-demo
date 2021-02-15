@@ -36,7 +36,7 @@ buildscript {
         ]
 
         /*https://github.com/google/dagger#dagger*/
-        daggerVersion = '2.28.3'
+        daggerVersion = '2.31'
         daggerDep = [
                 core    : "com.google.dagger:dagger:${daggerVersion}",
                 compiler: "com.google.dagger:dagger-compiler:${daggerVersion}",
@@ -63,6 +63,7 @@ buildscript {
         archComponents = [
                 components        : "androidx.lifecycle:lifecycle-extensions:${archComponentsVersion}",
                 componentsCompiler: "androidx.lifecycle:lifecycle-compiler:${archComponentsVersion}",
+                viewModel         : "androidx.lifecycle:lifecycle-viewmodel:${archComponentsVersion}",
                 viewModelKtx      : "androidx.lifecycle:lifecycle-viewmodel-ktx:${archComponentsVersion}",
 
         ]

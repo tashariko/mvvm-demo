@@ -6,6 +6,7 @@ apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     compileSdkVersion rootProject.compileSdk
+    compileOptions.incremental = false
     defaultConfig {
         applicationId "com.gopay"
         minSdkVersion rootProject.minSdk
@@ -55,13 +56,14 @@ dependencies {
     kapt daggerDep.compiler
 
     implementation hiltDep.core
-    //implementation hiltJetpackDep.viewModel
+    implementation hiltJetpackDep.viewModel
     kapt hiltDep.compiler
-    //kapt hiltJetpackDep.compilerX
+    kapt hiltJetpackDep.compilerX
 
 
     //Arch components
     api archComponents.components
+    api archComponents.viewModel
     kapt archComponents.componentsCompiler
     api archComponents.viewModelKtx
 
