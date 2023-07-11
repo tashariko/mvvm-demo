@@ -24,6 +24,23 @@ buildscript {
                 coroutinesAndroid:  "org.jetbrains.kotlinx:kotlinx-coroutines-android:${coroutinesAndroidVersion}"
         ]
 
+        /*https://developer.android.com/training/dependency-injection/hilt-android*/
+        hiltVersion = '2.38.1'
+        hiltDep = [
+                core        : "com.google.dagger:hilt-android:${hiltVersion}",
+                compiler    : "com.google.dagger:hilt-android-compiler:2.37",
+                gradlePlugin: "com.google.dagger:hilt-android-gradle-plugin:${hiltVersion}",
+
+        ]
+
+        /*https://developer.android.com/training/dependency-injection/hilt-jetpack*/
+        hiltJetpackVersion = "1.0.0-alpha03"
+        hiltJetpackDep = [
+                viewModel   : "androidx.hilt:hilt-lifecycle-viewmodel:${hiltJetpackVersion}",
+                compilerX   : "androidx.hilt:hilt-compiler:1.0.0"
+        ]
+
+
         androidDependencies = [
                 /*https://developer.android.com/studio/releases/gradle-plugin*/
                 gradlePlugin: "com.android.tools.build:gradle:7.0.3",
@@ -131,6 +148,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:7.0.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.10"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:2.38.1"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
