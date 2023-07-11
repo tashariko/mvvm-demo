@@ -2,15 +2,16 @@ package com.gopay.customviews
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.widget.FrameLayout
 import com.gopay.R
 import com.gopay.extensions.isGone
 import com.gopay.extensions.visible
 import com.gopay.customviews.FullScreenViewType.LoadingView
 import com.gopay.customviews.FullScreenViewType.ErrorView
+import com.gopay.databinding.FullScreenViewBinding
 import com.gopay.extensions.gone
 import com.gopay.extensions.isVisible
-import kotlinx.android.synthetic.main.full_screen_view.view.*
 
 class FullScreenView @JvmOverloads constructor(
     context: Context,
@@ -18,30 +19,28 @@ class FullScreenView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
+    private var binding: FullScreenViewBinding
+
     init {
-        inflate(
-            context,
-            R.layout.full_screen_view,
-            this
-        )
+        binding = FullScreenViewBinding.inflate(LayoutInflater.from(context), this, true)
     }
 
     fun show(type: FullScreenViewType) {
         when(type) {
             LoadingView -> {
-                if(loader.isGone()){
-                    loader.visible()
+                if(binding.loader.isGone()){
+                    binding.loader.visible()
                 }
             }
             ErrorView -> {
-                if(loader.isVisible()){
-                    loader.gone()
+                if(binding.loader.isVisible()){
+                    binding.loader.gone()
                 }
-                if(error_view.isGone()){
-                    error_view.visible()
+                if(binding.errorView.isGone()){
+                    binding.errorView.visible()
                 }
-                if(error_text.isGone()){
-                    error_text.visible()
+                if(binding.errorText.isGone()){
+                    binding.errorText.visible()
                 }
             }
         }
@@ -50,16 +49,16 @@ class FullScreenView @JvmOverloads constructor(
     fun hide(type: FullScreenViewType) {
         when(type) {
             LoadingView -> {
-                if(loader.isVisible()){
-                    loader.gone()
+                if(binding.loader.isVisible()){
+                    binding.loader.gone()
                 }
             }
             ErrorView -> {
-                if(error_view.isVisible()){
-                    error_view.gone()
+                if(binding.errorView.isVisible()){
+                    binding.errorView.gone()
                 }
-                if(error_text.isVisible()){
-                    error_text.gone()
+                if(binding.errorText.isVisible()){
+                    binding.errorText.gone()
                 }
             }
         }

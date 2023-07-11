@@ -1,20 +1,25 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
-apply plugin: 'dagger.hilt.android.plugin'
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+}
 
 android {
-    compileSdkVersion rootProject.compileSdk
-    compileOptions.incremental = false
+    namespace 'com.gopay'
+    compileSdk 33
+
     defaultConfig {
         applicationId "com.gopay"
-        minSdkVersion rootProject.minSdk
-        targetSdkVersion rootProject.targetSdk
+        minSdk 21
+        targetSdk 33
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner testing.junitRunner
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         debug {
             buildConfigField "String", "API_BASE", '""'
@@ -26,50 +31,48 @@ android {
         }
     }
 
-    //dynamicFeatures = [":{MODULE_NAME}"]
-
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
-
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = '11'
+    }
+    buildFeatures {
+        viewBinding true
     }
 }
 
 dependencies {
+
+    testImplementation project(path: ':app')
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     //Kotlin
-    api kotlinDep.stdlib
     api kotlinDep.coroutines
 
     //Android
     api androidDependencies.appCompat
     implementation androidDependencies.androidXCore
-    implementation androidDependencies.activityKtx
+    //implementation androidDependencies.activityKtx
     implementation androidDependencies.fragmentKtx
 
     //DI
     api daggerDep.core
     kapt daggerDep.compiler
 
-    implementation hiltDep.core
-    implementation hiltJetpackDep.viewModel
-    kapt hiltDep.compiler
-    kapt hiltJetpackDep.compilerX
-
-
     //Arch components
+    //api archComponents.viewModel
+    //kapt archComponents.componentsCompiler
     api archComponents.components
-    api archComponents.viewModel
-    kapt archComponents.componentsCompiler
+    api archComponents.livedataKtx
     api archComponents.viewModelKtx
 
     //Room
     api roomDb.core
     api roomDb.ktx
+    annotationProcessor roomDb.compiler
+    kapt roomDb.compiler
     api roomDb.rx
 
     //Networking
@@ -77,8 +80,8 @@ dependencies {
     api networking.okhttpLog
     api networking.gson
     api networking.retrofit
-    api networking.retrofitRx
     api networking.retrofitGson
+    api networking.retrofitRx
 
     //UI
     api ui.constraintLayout
@@ -88,9 +91,31 @@ dependencies {
     api ui.picassoOkHttp
     api ui.lottie
 
-    //rx
+    implementation other.multidex
+
+//    //rx
     api rx.java
     api rx.android
     api rx.kotlin
 
+    api coil.main
+
+    testImplementation "com.squareup.okhttp3:mockwebserver:4.8.0"
+    testImplementation 'junit:junit:4.12'
+    testImplementation "com.squareup.okhttp3:okhttp:4.9.3"
+    testImplementation "androidx.arch.core:core-testing:2.0.0"
+    testImplementation "org.mockito:mockito-core:2.25.0"
+    testImplementation 'androidx.test:core-ktx:1.5.0'
+    testImplementation 'org.robolectric:robolectric:4.9'
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
+
+    testImplementation 'org.mockito.kotlin:mockito-kotlin:4.0.0'
+
+
+    androidTestImplementation "androidx.test:core:1.5.0"
+    androidTestImplementation "androidx.test:runner:1.5.2"
+    androidTestImplementation "androidx.test:rules:1.5.0"
+    androidTestImplementation "androidx.test.ext:junit:1.1.0"
+
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
