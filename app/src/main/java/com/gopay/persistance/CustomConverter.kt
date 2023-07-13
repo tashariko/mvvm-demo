@@ -8,19 +8,19 @@ import java.util.ArrayList
 class CustomConverter {
 
     @TypeConverter
-    fun storedLongToList(data: String): ArrayList<Long> {
+    fun storedLongToList(data: String?): ArrayList<String>? {
         val gson = Gson()
         if (data == null) {
             return ArrayList()
         }
-        val listType = object : TypeToken<ArrayList<Long>>() {}.type
-        return gson.fromJson<ArrayList<Long>>(data, listType)
+        val listType = object : TypeToken<ArrayList<String>>() {}.type
+        return gson.fromJson<ArrayList<String>>(data, listType)
     }
 
     @TypeConverter
-    fun listToStoredLong(myObjects: ArrayList<Long>): String {
+    fun listToStoredLong(myObjects: ArrayList<String>?): String? {
         val gson = Gson()
-        val listType = object : TypeToken<ArrayList<Long>>() {}.type
+        val listType = object : TypeToken<ArrayList<String>>() {}.type
         return gson.toJson(myObjects, listType)
     }
 

@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.gopay.data.local.dao.VehicleDao
 import com.gopay.persistance.AppDatabase
 import dagger.Module
 import dagger.Provides
@@ -24,7 +25,13 @@ class StorageModule {
 
     @Provides
     @Singleton
-    fun providesRoomDB(@ApplicationContext context: Context): RoomDatabase {
+    fun providesRoomDB(@ApplicationContext context: Context): AppDatabase {
         return Room.databaseBuilder(context, AppDatabase::class.java, "app_db").build()
+    }
+
+    @Provides
+    @Singleton
+    fun getVehicleDb(appDatabase: AppDatabase): VehicleDao {
+        return appDatabase.getVehicleDao()
     }
 }

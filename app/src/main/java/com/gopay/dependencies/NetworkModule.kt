@@ -4,6 +4,7 @@ import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.gopay.BuildConfig
+import com.gopay.data.remote.MiscApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -77,5 +78,11 @@ class NetworkModule {
     @Singleton
     fun providesGsonConverterFactory(): GsonConverterFactory {
         return GsonConverterFactory.create()
+    }
+
+    @Provides
+    @Singleton
+    fun getApiService(retrofit: Retrofit): MiscApiService {
+        return retrofit.create(MiscApiService::class.java)
     }
 }

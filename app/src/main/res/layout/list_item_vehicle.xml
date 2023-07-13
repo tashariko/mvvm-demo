@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/parentView"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/design_default_color_primary"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/dimen_16_dp"
+    android:layout_margin="@dimen/dimen_16_dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:adjustViewBounds="true"
+        android:minHeight="50dp"
+        android:background="@color/cardview_light_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/titleView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:text="Title"
+        android:layout_marginStart="@dimen/dimen_16_dp"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imageView" />
+
+    <TextView
+        android:id="@+id/countView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:text="overview"
+        android:textSize="15sp"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="@dimen/dimen_16_dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleView"
+        app:layout_constraintStart_toEndOf="@id/imageView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
