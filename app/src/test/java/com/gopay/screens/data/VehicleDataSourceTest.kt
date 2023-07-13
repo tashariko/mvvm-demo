@@ -15,6 +15,7 @@ import okio.source
 import org.hamcrest.CoreMatchers
 import org.hamcrest.MatcherAssert
 import org.junit.After
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -27,9 +28,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 class VehicleDataSourceTest {
 
     private lateinit var vehDataSource: VehicleDataSource
-
-    @get: Rule
-    val instantExecutorRule = InstantTaskExecutorRule()
 
     @get: Rule
     var mainCoroutineRule = MainCoroutineRule()
@@ -46,7 +44,6 @@ class VehicleDataSourceTest {
             .build()
             .create(MiscApiService::class.java)
         vehDataSource = VehicleDataSource(service )
-        vehDataSource.showDataInAllState = false
     }
 
     @After
@@ -61,12 +58,10 @@ class VehicleDataSourceTest {
             val resultResponse = vehDataSource.getVehicleList()
 
             val request = mockWebServer.takeRequest()
-            MatcherAssert.assertThat(request.path, CoreMatchers.`is`("/3/configuration"))
+            Assert.assertThat(request.path, CoreMatchers.`is`("/3/configuration"))
 
             assertNotNull(resultResponse)
-            resultResponse.collect{
-                MatcherAssert.assertThat(it.status,CoreMatchers.`is`(ApiResult.Status.ERROR))
-            }
+            Assert.assertThat(resultResponse.status,CoreMatchers.`is`(ApiResult.Status.ERROR))
         }
     }
 //

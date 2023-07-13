@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.gopay.data.local.entity.Vehicle
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface VehicleDao {

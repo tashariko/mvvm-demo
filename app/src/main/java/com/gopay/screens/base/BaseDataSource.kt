@@ -5,5 +5,5 @@ import com.gopay.data.local.entity.Vehicle
 import kotlinx.coroutines.flow.Flow
 
 interface BaseDataSource {
-    fun getVehicleList(): Flow<ApiResult<List<Vehicle>>>
+    suspend fun getVehicleList(): ApiResult<List<Vehicle>>
 }

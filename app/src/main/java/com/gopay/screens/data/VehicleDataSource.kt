@@ -12,42 +12,28 @@ import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 class VehicleDataSource @Inject constructor(
-    private val miscApiService: MiscApiService,
-    private val vehicleDao: VehicleDao? = null
-) : BaseDataSource{
+    private val miscApiService: MiscApiService
+) : BaseDataSource {
 
-    var showDataInAllState = false
-
-    override fun getVehicleList(): Flow<ApiResult<List<Vehicle>>> {
-        return flow {
-            val itemsList = vehicleDao?.getItems()
-            with(itemsList) {
-                if (showDataInAllState) {
-                    emit(ApiResult.loading<List<Vehicle>>(this))
-                }else{
-                    emit(ApiResult.loading<List<Vehicle>>())
-                }
-
-                val response = miscApiService.getVehicles()
-                if(response.isSuccessful){
-                    response.body()?.let {
-                        emit(ApiResult.success(it.results))
-                    }?:run {
-                        if(showDataInAllState) {
-                            emit(ApiResult.error(errorMessage = "Error Occurred", itemsList))
-                        }else{
-                            emit(ApiResult.error<List<Vehicle>>(errorMessage = "Error Occurred"))
-                        }
-                    }
-                }else{
-                    if(showDataInAllState)
-                        emit(ApiResult.error<List<Vehicle>>(errorMessage = "Error Occurred",itemsList))
-                    else
-                        emit(ApiResult.error<List<Vehicle>>(errorMessage = "Error Occurred"))
-                }
+    override suspend fun getVehicleList(): ApiResult<List<Vehicle>> {
+        val response = miscApiService.getVehicles()
+        if (response.isSuccessful) {
+            response.body()?.let {
+                return ApiResult.success(it.results)
+            } ?: run {
+                return ApiResult.error(errorMessage = "Error Occurred")
             }
+        } else {
+            return ApiResult.error(errorMessage = "Error Occurred")
+        }
 
-        }.flowOn(Dispatchers.IO)
     }
+}
 
+
+class VehicleLocalDataSource @Inject constructor(private val vehicleDao: VehicleDao) :
+    BaseDataSource {
+    override suspend fun getVehicleList(): ApiResult<List<Vehicle>> {
+        return ApiResult.success(vehicleDao.getItems())
+    }
 }
