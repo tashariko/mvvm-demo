@@ -49,61 +49,52 @@ dependencies {
         exclude module: 'okhttp-ws'
     }
     testImplementation project(path: ':app')
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     //Kotlin
-    api kotlinDep.coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
 
     //Android
-    api androidDependencies.appCompat
-    implementation androidDependencies.androidXCore
-    //implementation androidDependencies.activityKtx
-    implementation androidDependencies.fragmentKtx
+    implementation "androidx.appcompat:appcompat:1.6.0"
+    implementation "androidx.core:core-ktx:1.9.0"
+    implementation "androidx.fragment:fragment-ktx:1.5.5"
 
     //DI
-    implementation hiltDep.core
-    implementation hiltJetpackDep.viewModel
-    kapt hiltDep.compiler
-    kapt hiltJetpackDep.compilerX
+    implementation "com.google.dagger:hilt-android:2.38.1"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
+    kapt "com.google.dagger:hilt-android-compiler:2.37"
+    kapt "androidx.hilt:hilt-compiler:1.0.0"
 
     //Arch components
-    //api archComponents.viewModel
-    //kapt archComponents.componentsCompiler
-    api archComponents.components
-    api archComponents.livedataKtx
-    api archComponents.viewModelKtx
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
 
     //Room
-    api roomDb.core
-    api roomDb.ktx
-    annotationProcessor roomDb.compiler
-    kapt roomDb.compiler
-    api roomDb.rx
+    implementation "androidx.room:room-runtime:2.5.0"
+    implementation "androidx.room:room-ktx:2.5.0"
+    annotationProcessor "androidx.room:room-compiler:2.5.0"
+    kapt "androidx.room:room-compiler:2.5.0"
 
     //Networking
-    api networking.okhttp
-    api networking.okhttpLog
-    api networking.gson
-    api networking.retrofit
-    api networking.retrofitGson
-    api networking.retrofitRx
+    implementation "com.squareup.okhttp3:okhttp:4.8.0"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.7.2"
+    implementation "com.google.code.gson:gson:2.8.9"
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
 
     //UI
-    api ui.constraintLayout
-    api ui.recyclerview
-    api ui.material
-    api ui.picasso
-    api ui.picassoOkHttp
-    api ui.lottie
+    implementation "androidx.constraintlayout:constraintlayout:2.1.4"
+    implementation "androidx.recyclerview:recyclerview:1.2.1"
+    implementation "com.google.android.material:material:1.5.0-alpha04"
+    implementation "com.squareup.picasso:picasso:2.71828"
+    implementation "com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0"
+    implementation "com.airbnb.android:lottie:3.3.0"
 
-    implementation other.multidex
+    implementation "androidx.multidex:multidex:2.0.0"
 
-//    //rx
-    api rx.java
-    api rx.android
-    api rx.kotlin
-
-    api coil.main
+    implementation "io.coil-kt:coil:1.3.2"
     implementation 'com.squareup.okhttp3:okhttp-ws:3.4.1'
 
     testImplementation "com.squareup.okhttp3:mockwebserver:4.8.0"
