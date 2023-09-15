@@ -17,7 +17,6 @@ class VehicleRepository @Inject constructor(
 
     var showDataInAllState = true
 
-
     override fun getVehicleList(): Flow<ApiResult<List<Vehicle>>> {
 
         return flow {

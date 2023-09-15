@@ -55,19 +55,20 @@ class VehicleDataSourceTest {
 
             assertNotNull(resultResponse)
             MatcherAssert.assertThat(resultResponse.status,CoreMatchers.`is`(ApiResult.Status.SUCCESS))
+
         }
     }
-//
-//    @Test
-//    fun `network call failure`() {
-//        runBlocking {
-//            enqueueResponse("config-response.json", responseCode = 400)
-//            val resultResponse = landingRemoteDataSource.getData()
-//
-//            assertNotNull(resultResponse)
-//            MatcherAssert.assertThat(resultResponse.status,CoreMatchers.`is`(ApiResult.Status.ERROR))
-//        }
-//    }
+
+    @Test
+    fun `network call failure`() {
+        runBlocking {
+            enqueueResponse("config-response.json", responseCode = 400)
+            val resultResponse = vehDataSource.getVehicleList()
+
+            assertNotNull(resultResponse)
+            MatcherAssert.assertThat(resultResponse.status,CoreMatchers.`is`(ApiResult.Status.ERROR))
+        }
+    }
 
     private fun enqueueResponse(fileName: String, headers: Map<String, String> = emptyMap(), responseCode: Int = 200) {
         val inputStream = javaClass.classLoader
