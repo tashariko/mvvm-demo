@@ -35,7 +35,7 @@ class VehicleAdapter : RecyclerView.Adapter<VehicleAdapter.VehicleViewHolder>() 
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Vehicle) = with(binding) {
             titleView.text = "${item.name}"
-            countView.text = "Pilots: ${item.pilots?.size}"
+            manufacturerView.text = "Constructed by: ${item.manufacturer}"
 
             parentView.setOnClickListener {
                 itemClicked.itemClicked(item)

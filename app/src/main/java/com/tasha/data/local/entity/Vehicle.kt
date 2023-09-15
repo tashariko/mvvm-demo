@@ -12,5 +12,6 @@ data class Vehicle (
     @PrimaryKey(autoGenerate = true)
     val id: Long,
     val name: String,
+    val manufacturer: String?,
     val pilots: ArrayList<String>? = null,
 ):Parcelable
