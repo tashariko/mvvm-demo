@@ -1,14 +1,9 @@
 package com.gopay.screens.data
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.gopay.MainCoroutineRule
 import com.gopay.data.ApiResult
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectIndexed
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.test.runTest
-import org.hamcrest.core.IsEqual
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
@@ -24,20 +19,23 @@ class VehicleRepositoryTest {
     @get:Rule
     var mainCoroutineRule = MainCoroutineRule()
 
-
     @Before
     fun setup() {
         repository = VehicleRepository(FakeDataSource(), FakeDataSource())
-        repository.showDataInAllState = false
+        repository.showDataInAllState = true
     }
 
     @Test
     fun dataIsSuccess() = runTest{
+
         repository.getVehicleList().collectIndexed { index, value ->
-            if(index == 0)
+            if(index == 0) {
                 Assert.assertEquals(value.status, ApiResult.Status.LOADING)
-            else
+                Assert.assertTrue(value.data != null)
+            }else {
                 Assert.assertEquals(value.status, ApiResult.Status.SUCCESS)
+                Assert.assertTrue(value.data != null)
+            }
         }
     }
 

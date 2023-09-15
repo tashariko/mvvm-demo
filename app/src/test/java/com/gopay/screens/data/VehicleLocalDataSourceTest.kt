@@ -1,23 +1,22 @@
-package com.gopay
+package com.gopay.screens.data
 
 import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.gopay.data.local.dao.VehicleDao
 import com.gopay.data.local.entity.Vehicle
 import com.gopay.persistance.AppDatabase
 import junit.framework.TestCase
-import org.hamcrest.MatcherAssert.assertThat
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
 import java.io.IOException
 
-@RunWith(AndroidJUnit4::class)
-class DatabaseTest: TestCase() {
+@RunWith(RobolectricTestRunner::class)
+class VehicleLocalDataSourceTest: TestCase() {
     private lateinit var vehicleDao: VehicleDao
     private lateinit var db: AppDatabase
 
@@ -25,7 +24,7 @@ class DatabaseTest: TestCase() {
     fun createDb() {
         val context = ApplicationProvider.getApplicationContext<Context>()
         db = Room.inMemoryDatabaseBuilder(
-            context, AppDatabase::class.java).build()
+            context, AppDatabase::class.java).allowMainThreadQueries().build()
         vehicleDao = db.getVehicleDao()
     }
 
@@ -38,9 +37,9 @@ class DatabaseTest: TestCase() {
     @Test
     @Throws(Exception::class)
     fun writeUserAndReadInList() {
-        val language = Vehicle(111, "2 Years")
-        vehicleDao.addItem(language)
-        val languages = vehicleDao.getItems()
-        Assert.assertTrue(languages.contains(language))
+        val vehicle = Vehicle(111, "2 Years")
+        vehicleDao.addItem(vehicle)
+        val vehicles = vehicleDao.getItems()
+        Assert.assertTrue(vehicles.contains(vehicle))
     }
 }

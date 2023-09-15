@@ -58,10 +58,10 @@ class VehicleDataSourceTest {
             val resultResponse = vehDataSource.getVehicleList()
 
             val request = mockWebServer.takeRequest()
-            Assert.assertThat(request.path, CoreMatchers.`is`("/3/configuration"))
+            Assert.assertThat(request.path, CoreMatchers.`is`("/api/starships"))
 
             assertNotNull(resultResponse)
-            Assert.assertThat(resultResponse.status,CoreMatchers.`is`(ApiResult.Status.ERROR))
+            Assert.assertThat(resultResponse.status,CoreMatchers.`is`(ApiResult.Status.SUCCESS))
         }
     }
 //

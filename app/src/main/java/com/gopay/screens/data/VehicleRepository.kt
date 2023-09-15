@@ -17,7 +17,7 @@ class VehicleRepository @Inject constructor(
     private val vehicleLocalDataSource: BaseDataSource
 ) : BaseRepository {
 
-    var showDataInAllState = false
+    var showDataInAllState = true
 
 
     override fun getVehicleList(): Flow<ApiResult<List<Vehicle>>> {
