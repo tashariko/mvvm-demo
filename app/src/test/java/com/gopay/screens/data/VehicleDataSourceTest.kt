@@ -29,8 +29,6 @@ class VehicleDataSourceTest {
 
     private lateinit var vehDataSource: VehicleDataSource
 
-    @get: Rule
-    var mainCoroutineRule = MainCoroutineRule()
 
     private lateinit var service: MiscApiService
     private lateinit var mockWebServer: MockWebServer
@@ -53,7 +51,7 @@ class VehicleDataSourceTest {
 
     @Test
     fun `network call request and success`() {
-        runTest {
+        runBlocking {
             enqueueResponse("config-response.json")
             val resultResponse = vehDataSource.getVehicleList()
 
@@ -61,7 +59,7 @@ class VehicleDataSourceTest {
             Assert.assertThat(request.path, CoreMatchers.`is`("/api/starships"))
 
             assertNotNull(resultResponse)
-            Assert.assertThat(resultResponse.status,CoreMatchers.`is`(ApiResult.Status.SUCCESS))
+            MatcherAssert.assertThat(resultResponse.status,CoreMatchers.`is`(ApiResult.Status.SUCCESS))
         }
     }
 //

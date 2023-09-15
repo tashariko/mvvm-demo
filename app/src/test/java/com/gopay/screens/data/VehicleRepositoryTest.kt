@@ -3,6 +3,7 @@ package com.gopay.screens.data
 import com.gopay.MainCoroutineRule
 import com.gopay.data.ApiResult
 import kotlinx.coroutines.flow.collectIndexed
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert
 import org.junit.Before
@@ -16,9 +17,6 @@ class VehicleRepositoryTest {
 
     lateinit var repository: VehicleRepository
 
-    @get:Rule
-    var mainCoroutineRule = MainCoroutineRule()
-
     @Before
     fun setup() {
         repository = VehicleRepository(FakeDataSource(), FakeDataSource())
@@ -26,7 +24,7 @@ class VehicleRepositoryTest {
     }
 
     @Test
-    fun dataIsSuccess() = runTest{
+    fun dataIsSuccess() = runBlocking{
 
         repository.getVehicleList().collectIndexed { index, value ->
             if(index == 0) {
