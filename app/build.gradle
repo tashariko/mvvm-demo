@@ -8,11 +8,11 @@ plugins {
 }
 
 android {
-    namespace 'com.gopay'
+    namespace 'com.tasha'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.gopay"
+        applicationId "com.tasha"
         minSdk 21
         targetSdk 33
         versionCode 1

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GoPay</string>
+    <string name="app_name">Tasha</string>
     <string name="cannot_connect_to_internet">Could not connect to the internet</string>
     <string name="something_went_wrong">OOPS!! Something went wrong..</string>
 
