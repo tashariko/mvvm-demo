@@ -3,6 +3,8 @@ package com.tasha.dependencies
 import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.pluto.Pluto
+import com.pluto.plugins.network.PlutoInterceptor
 import com.tasha.BuildConfig
 import com.tasha.data.remote.MiscApiService
 import dagger.Module
@@ -40,6 +42,7 @@ class NetworkModule {
     fun providesOkHttpClient(cache: Cache): OkHttpClient {
         val client = OkHttpClient.Builder()
             .cache(cache)
+            .addInterceptor(PlutoInterceptor())
             .connectTimeout(10, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
             .readTimeout(10, TimeUnit.SECONDS)

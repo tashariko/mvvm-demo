@@ -9,6 +9,7 @@
         android:id="@+id/fullScreenview"
         android:layout_width="@dimen/dimen_0_dp"
         android:layout_height="@dimen/dimen_0_dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>

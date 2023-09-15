@@ -4,12 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <com.airbnb.lottie.LottieAnimationView
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_200_dp"
         android:padding="@dimen/dimen_16_dp"
         android:id="@+id/error_view"
-        app:lottie_fileName="loader_blade.json"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true" />
+       android:src="@mipmap/ic_launcher_round"/>
 </RelativeLayout>

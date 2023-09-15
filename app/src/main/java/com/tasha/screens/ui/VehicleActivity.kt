@@ -44,7 +44,6 @@ class VehicleActivity :AppCompatActivity() {
         }
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
         binding.recyclerView.adapter = adapter
-        showLoading()
 
         EspressoIdlingResource.increment()
         viewModel.liveData.observe(this){response ->
@@ -67,7 +66,11 @@ class VehicleActivity :AppCompatActivity() {
                 }
                 ApiResult.Status.LOADING -> {
                     response.data?.let {
-                        showData(it)
+                        if(it.isEmpty()){
+                            showLoading()
+                        }else {
+                            showData(it)
+                        }
                     }?: run {
                         showLoading()
                     }
