@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import androidx.room.Room
+import com.tasha.data.local.dao.PeopleDao
+import com.tasha.data.local.dao.PlanetDao
 import com.tasha.data.local.dao.VehicleDao
 import com.tasha.persistance.AppDatabase
 import dagger.Module
@@ -32,5 +34,17 @@ class StorageModule {
     @Singleton
     fun getVehicleDb(appDatabase: AppDatabase): VehicleDao {
         return appDatabase.getVehicleDao()
+    }
+
+    @Provides
+    @Singleton
+    fun getPlanetDb(appDatabase: AppDatabase): PlanetDao {
+        return appDatabase.getPlanetDao()
+    }
+
+    @Provides
+    @Singleton
+    fun getPeopleDao(appDatabase: AppDatabase): PeopleDao {
+        return appDatabase.getPeopleDao()
     }
 }

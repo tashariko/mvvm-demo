@@ -2,6 +2,7 @@ package com.tasha.screens.data
 
 import com.tasha.data.ApiResult
 import com.tasha.data.remote.MiscApiService
+import com.tasha.screens.vehicles.data.VehicleDataSource
 import junit.framework.TestCase.assertNotNull
 import kotlinx.coroutines.runBlocking
 import okhttp3.mockwebserver.MockResponse

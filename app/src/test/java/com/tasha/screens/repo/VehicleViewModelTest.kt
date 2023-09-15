@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.tasha.MainCoroutineRule
 import com.tasha.getOrAwaitValue
 import com.tasha.screens.data.FakeDataSource
-import com.tasha.screens.data.VehicleViewModel
+import com.tasha.screens.vehicles.data.VehicleViewModel
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert

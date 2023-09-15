@@ -1,6 +1,7 @@
 package com.tasha.screens.data
 
 import com.tasha.data.ApiResult
+import com.tasha.screens.vehicles.data.VehicleRepository
 import kotlinx.coroutines.flow.collectIndexed
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert

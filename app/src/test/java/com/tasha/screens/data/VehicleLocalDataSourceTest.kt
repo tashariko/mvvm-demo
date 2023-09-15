@@ -37,7 +37,7 @@ class VehicleLocalDataSourceTest: TestCase() {
     @Test
     @Throws(Exception::class)
     fun writeUserAndReadInList() {
-        val vehicle = Vehicle(111, "2 Years")
+        val vehicle = Vehicle("111", "2 Years")
         vehicleDao.addItem(vehicle)
         val vehicles = vehicleDao.getItems()
         Assert.assertTrue(vehicles.contains(vehicle))
