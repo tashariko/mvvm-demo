@@ -1,6 +1,7 @@
 package com.tasha.screens.people.data
 
 import com.tasha.data.ApiResult
+import com.tasha.data.local.dao.PPVDao
 import com.tasha.data.local.dao.PeopleDao
 import com.tasha.data.local.entity.People
 import com.tasha.data.remote.MiscApiService
@@ -24,12 +25,22 @@ class PeopleDataSource @Inject constructor(
         }
 
     }
+
+    override suspend fun savePeopleList(list: List<People>) {
+        
+    }
 }
 
 
-class PeopleLocalDataSource @Inject constructor(private val peopleDao: PeopleDao) :
+class PeopleLocalDataSource @Inject constructor(private val peopleDao: PeopleDao,private val ppvDao: PPVDao) :
     BaseDataSource {
     override suspend fun getPeopleList(): ApiResult<List<People>> {
         return ApiResult.success(peopleDao.getItems())
+    }
+
+    override suspend fun savePeopleList(list: List<People>) {
+        peopleDao.addAllItems(list)
+
+        ppvDao.addToPPVTableForPeople(peopleDao.getItems())
     }
 }

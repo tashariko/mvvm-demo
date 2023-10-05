@@ -3,6 +3,7 @@ package com.tasha.persistance
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.tasha.data.local.dao.PPVDao
 import com.tasha.data.local.dao.PeopleDao
 import com.tasha.data.local.dao.PlanetDao
 import com.tasha.data.local.dao.VehicleDao
@@ -17,4 +18,5 @@ abstract class AppDatabase: RoomDatabase() {
     abstract fun getVehicleDao(): VehicleDao
     abstract fun getPlanetDao(): PlanetDao
     abstract fun getPeopleDao(): PeopleDao
+    abstract fun getPPVDao(): PPVDao
 }

@@ -41,6 +41,7 @@ class SplashActivity : AppCompatActivity() {
 
     fun startWork() {
         startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 
     private val requestPermissionLauncher = registerForActivityResult(

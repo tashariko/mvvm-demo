@@ -1,6 +1,7 @@
 package com.tasha.screens.planets.data
 
 import com.tasha.data.ApiResult
+import com.tasha.data.local.dao.PPVDao
 import com.tasha.data.local.dao.PlanetDao
 import com.tasha.data.local.entity.Planet
 import com.tasha.data.remote.MiscApiService
@@ -24,12 +25,21 @@ class PlanetDataSource @Inject constructor(
         }
 
     }
+
+    override suspend fun savePlanetList(list: List<Planet>) {
+
+    }
 }
 
 
-class PlanetLocalDataSource @Inject constructor(private val planetDao: PlanetDao) :
+class PlanetLocalDataSource @Inject constructor(private val planetDao: PlanetDao,private val ppvDao: PPVDao) :
     BaseDataSource {
     override suspend fun getPlanetList(): ApiResult<List<Planet>> {
         return ApiResult.success(planetDao.getItems())
+    }
+
+    override suspend fun savePlanetList(list: List<Planet>) {
+        planetDao.addAllItems(list)
+        ppvDao.addToPPVTableForPlanet(planetDao.getItems())
     }
 }

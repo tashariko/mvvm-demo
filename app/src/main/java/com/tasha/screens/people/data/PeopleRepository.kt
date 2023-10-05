@@ -16,6 +16,7 @@ class PeopleRepository @Inject constructor(
 ) : BaseRepository {
 
     var showDataInAllState = true
+    var saveToDb = true
 
     override fun getPeopleList(): Flow<ApiResult<List<People>>> {
 
@@ -28,6 +29,8 @@ class PeopleRepository @Inject constructor(
             }
             val response = peopleRemoteDataSource.getPeopleList()
             if (response.status == ApiResult.Status.SUCCESS) {
+                if(saveToDb)
+                    peopleLocalDataSource.savePeopleList(response.data!!)
                 emit(ApiResult.success<List<People>>(response.data!!))
             } else {
                 if (showDataInAllState) {

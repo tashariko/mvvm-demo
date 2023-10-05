@@ -24,9 +24,14 @@ data class Vehicle(
     @ColumnInfo("starship_class")
     val starshipClass: String? = null,
     val pilots: ArrayList<String>? = null,
-    val url:String? = null
-):Parcelable {
-    @PrimaryKey(autoGenerate = true)
-    var id: Long? = null
-
+    val url:String
+):ParentEntity(),Parcelable {
+    @PrimaryKey
+    var id: Long = System.currentTimeMillis()
+        set(value) {
+            field = url.split("/")[5].toLong()
+        }
+        get() {
+            return url.split("/")[5].toLong()
+        }
 }

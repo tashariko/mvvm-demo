@@ -20,17 +20,4 @@ public abstract class VehicleDao {
     @Query("SELECT * from vehicle")
     abstract fun getItems(): List<Vehicle>
 
-    @Transaction
-    public open fun addToPPVTable(list: List<Vehicle>) {
-        list.forEach {
-            it.pilots?.forEach {pilot ->
-                var id:Long = pilot.split("/")[5].toLong()
-                addPPVItem(PPVTable( vehicle_id = it.id, people_id = id, ))
-            }
-        }
-    }
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract fun addPPVItem(ppvTable: PPVTable)
-
 }

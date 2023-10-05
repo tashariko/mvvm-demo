@@ -13,10 +13,16 @@ data class Planet (
     val gravity: String? = null,
     val terrain: String? = null,
     val climate: String? = null,
-    val url:String? = null,
+    val url:String,
     val residents: ArrayList<String>? = null
-) : Parcelable {
-    @PrimaryKey(autoGenerate = true)
-    var id: Long? = null
+) : ParentEntity(),Parcelable {
+    @PrimaryKey
+    var id: Long = System.currentTimeMillis()
+        set(value) {
+            field = url.split("/")[5].toLong()
 
+        }
+        get() {
+            return url.split("/")[5].toLong()
+        }
 }

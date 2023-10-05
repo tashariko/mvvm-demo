@@ -16,6 +16,7 @@ class PlanetRepository @Inject constructor(
 ) : BaseRepository {
 
     var showDataInAllState = true
+    var saveToDb = true
 
     override fun getPlanetList(): Flow<ApiResult<List<Planet>>> {
 
@@ -28,6 +29,8 @@ class PlanetRepository @Inject constructor(
             }
             val response = planetRemoteDataSource.getPlanetList()
             if (response.status == ApiResult.Status.SUCCESS) {
+                if(saveToDb)
+                    planetLocalDataSource.savePlanetList(response.data!!)
                 emit(ApiResult.success<List<Planet>>(response.data!!))
             } else {
                 if (showDataInAllState) {

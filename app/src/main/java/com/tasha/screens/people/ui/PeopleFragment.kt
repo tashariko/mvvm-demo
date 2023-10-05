@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tasha.EspressoIdlingResource
+import com.tasha.HomeScreenType
 import com.tasha.customviews.FullScreenViewType
 import com.tasha.data.ApiResult
 import com.tasha.data.local.entity.People
@@ -42,6 +43,7 @@ class PeopleFragment :Fragment() {
         adapter.itemClicked = object: ListPeopleClicked {
             override fun itemClicked(item: People) {
                 var intent = Intent(context, SecondActivity::class.java)
+                intent.putExtra("type", HomeScreenType.People.name)
                 intent.putExtra("people", item)
                 startActivity(intent)
             }
@@ -82,7 +84,6 @@ class PeopleFragment :Fragment() {
                 }
             }
         }
-
         viewModel.getData()
     }
 
@@ -99,7 +100,7 @@ class PeopleFragment :Fragment() {
         binding.recyclerView.isVisible = false
     }
 
-    fun showLoading(){
+    fun showLoading() {
         binding.fullScreenview.hide(FullScreenViewType.ErrorView)
         binding.fullScreenview.show(FullScreenViewType.LoadingView)
         binding.recyclerView.isVisible = false

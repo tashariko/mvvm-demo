@@ -19,11 +19,17 @@ data class People(
     @ColumnInfo("birth_year")
     val birthYear: String? = null,
     val gender: String? = null,
-    val homeworld:String? = null,       //will be a planet
-    val url:String? = null,
-    val starships: ArrayList<String>?= null
-) : Parcelable {
-    @PrimaryKey(autoGenerate = true)
-    var id: Long? = null
+    val homeworld: String? = null,       //will be a planet
+    val url: String,
+    val starships: ArrayList<String>? = null
+) : ParentEntity(), Parcelable {
+    @PrimaryKey
+    var id: Long = System.currentTimeMillis()
+        set(value) {
+            field = url.split("/")[5].toLong()
 
+        }
+        get() {
+            return url.split("/")[5].toLong()
+        }
 }

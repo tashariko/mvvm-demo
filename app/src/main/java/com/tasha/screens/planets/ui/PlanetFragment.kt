@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tasha.EspressoIdlingResource
+import com.tasha.HomeScreenType
 import com.tasha.customviews.FullScreenViewType
 import com.tasha.data.ApiResult
 import com.tasha.data.local.entity.Planet
@@ -43,6 +44,7 @@ class PlanetFragment :Fragment() {
         adapter.itemClicked = object: ListPlanetClicked {
             override fun itemClicked(item: Planet) {
                 var intent = Intent(context, SecondActivity::class.java)
+                intent.putExtra("type", HomeScreenType.Planet.name)
                 intent.putExtra("planet", item)
                 startActivity(intent)
             }

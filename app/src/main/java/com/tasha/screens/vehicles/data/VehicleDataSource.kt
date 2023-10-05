@@ -1,6 +1,7 @@
 package com.tasha.screens.vehicles.data
 
 import com.tasha.data.ApiResult
+import com.tasha.data.local.dao.PPVDao
 import com.tasha.data.local.dao.VehicleDao
 import com.tasha.data.local.entity.Vehicle
 import com.tasha.data.remote.MiscApiService
@@ -26,12 +27,12 @@ class VehicleDataSource @Inject constructor(
     }
 
     override suspend fun saveVehicleList(list: List<Vehicle>) {
-        TODO("Not yet implemented")
+
     }
 }
 
 
-class VehicleLocalDataSource @Inject constructor(private val vehicleDao: VehicleDao) :
+class VehicleLocalDataSource @Inject constructor(private val vehicleDao: VehicleDao,private val ppvDao: PPVDao) :
     BaseDataSource {
     override suspend fun getVehicleList(): ApiResult<List<Vehicle>> {
         return ApiResult.success(vehicleDao.getItems())
@@ -40,6 +41,6 @@ class VehicleLocalDataSource @Inject constructor(private val vehicleDao: Vehicle
     override suspend fun saveVehicleList(list: List<Vehicle>) {
         vehicleDao.addAllItems(list)
 
-        vehicleDao.addToPPVTable(vehicleDao.getItems())
+        ppvDao.addToPPVTableForVehicle(vehicleDao.getItems())
     }
 }

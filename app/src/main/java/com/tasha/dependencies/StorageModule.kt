@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import androidx.room.Room
+import com.tasha.data.local.dao.PPVDao
 import com.tasha.data.local.dao.PeopleDao
 import com.tasha.data.local.dao.PlanetDao
 import com.tasha.data.local.dao.VehicleDao
@@ -46,5 +47,11 @@ class StorageModule {
     @Singleton
     fun getPeopleDao(appDatabase: AppDatabase): PeopleDao {
         return appDatabase.getPeopleDao()
+    }
+
+    @Provides
+    @Singleton
+    fun getPPVDao(appDatabase: AppDatabase): PPVDao {
+        return appDatabase.getPPVDao()
     }
 }
