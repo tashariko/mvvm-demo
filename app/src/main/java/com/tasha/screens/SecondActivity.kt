@@ -51,6 +51,9 @@ class SecondActivity: AppCompatActivity() {
                     binding.textView.text = name
                 }
             }
+            else -> {
+
+            }
         }
     }
 }
