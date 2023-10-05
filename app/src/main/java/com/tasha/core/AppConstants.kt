@@ -1,4 +1,4 @@
-package com.tasha
+package com.tasha.core
 
 object AppConstants {
 

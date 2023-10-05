@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tasha.EspressoIdlingResource
-import com.tasha.HomeScreenType
+import com.tasha.core.HomeScreenType
 import com.tasha.customviews.FullScreenViewType
 import com.tasha.data.ApiResult
 import com.tasha.data.local.entity.Planet

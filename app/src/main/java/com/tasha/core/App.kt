@@ -1,4 +1,4 @@
-package com.tasha
+package com.tasha.core
 
 import android.app.Application
 import android.util.Log

@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tasha.EspressoIdlingResource
-import com.tasha.HomeScreenType
+import com.tasha.core.HomeScreenType
 import com.tasha.customviews.FullScreenViewType
 import com.tasha.data.ApiResult
 import com.tasha.data.local.entity.Vehicle
@@ -44,7 +44,7 @@ class VehicleFragment : Fragment() {
             override fun itemClicked(item: Vehicle) {
                 var intent = Intent(context, SecondActivity::class.java)
                 intent.putExtra("vehicle", item)
-                intent.putExtra("type",HomeScreenType.Vehicle.name)
+                intent.putExtra("type", HomeScreenType.Vehicle.name)
                 startActivity(intent)
             }
 

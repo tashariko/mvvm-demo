@@ -2,7 +2,7 @@ package com.tasha.screens
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.tasha.HomeScreenType
+import com.tasha.core.HomeScreenType
 import com.tasha.data.local.entity.ParentEntity
 import com.tasha.data.local.entity.People
 import com.tasha.data.local.entity.Planet

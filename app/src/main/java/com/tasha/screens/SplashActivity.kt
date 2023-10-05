@@ -1,4 +1,4 @@
-package com.tasha
+package com.tasha.screens
 
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -8,8 +8,6 @@ import androidx.activity.result.contract.ActivityResultContracts.RequestPermissi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.tasha.databinding.ActivitySplashBinding
-import com.tasha.screens.MainActivity
-import com.tasha.screens.people.ui.PeopleFragment
 
 
 class SplashActivity : AppCompatActivity() {
