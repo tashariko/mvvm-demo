@@ -9,5 +9,9 @@
     <string name="title_people">People</string>
     <string name="title_planet">Planet</string>
     <string name="title_vehicle">Vehicle</string>
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_fullscreen_new">FullscreenActivityNew</string>
 
 </resources>
